@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: adobe_scan_postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: adobe_scan_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: changemeinprod!
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: always
+    ports:
+      - "8888:8080"
+
+volumes:
+  postgres_data:
